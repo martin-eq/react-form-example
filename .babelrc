@@ -1,0 +1,16 @@
+{
+    "presets": [
+        [
+            "env",
+            {
+                "modules": false,
+                "useBuiltIns": "usage",
+                "targets": {
+                    "browsers": ["last 2 versions", "safari >= 7"]
+                }
+            }
+        ],
+        "react",
+        "stage-2"
+    ]
+}
