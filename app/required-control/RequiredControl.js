@@ -7,28 +7,33 @@ class RequiredControl extends Component {
     super(props)
 
     this.state = {
-      isValid: true
+      value: '',
+      validated: false
     }
   }
 
-  validateControl (evt) {
+  setValue (evt) {
     const { value } = evt.target
 
+    this.setState({ value })
+  }
+
+  validate () {
     this.setState({
-      isValid: !!value.trim()
+      validated: true
     })
   }
 
   render () {
     const { label, name, type, control: Control } = this.props
-    const { isValid } = this.state
+    const { value, validated } = this.state
 
     return (
       <div>
         { label && <label className={css.label}>{label}</label> }
-        <Control name={name} type={type} onBlur={(e) => this.validateControl(e)} />
+        <Control name={name} type={type} onChange={(e) => this.validateControl(e)} />
         {
-          !isValid &&
+          (validated && !value.trim()) &&
           <div className={css.errorMsg}>This field is Required</div>
         }
       </div>
